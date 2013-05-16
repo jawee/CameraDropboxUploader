@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <DropboxSDK/DropboxSDK.h>
 
 @interface DefaultScreenViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 - (IBAction)takePhoto:(id)sender;
 - (IBAction)selectPhoto:(id)sender;
+- (IBAction)uploadPressed:(id)sender;
 @end
 

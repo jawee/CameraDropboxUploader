@@ -26,7 +26,11 @@
                                     </barButtonItem>
                                     <barButtonItem title="Save" id="IuO-Ek-ux0"/>
                                     <barButtonItem width="14" style="plain" systemItem="fixedSpace" id="fSn-X1-TFW"/>
-                                    <barButtonItem title="Upload" id="brM-en-dGW"/>
+                                    <barButtonItem title="Upload" id="brM-en-dGW">
+                                        <connections>
+                                            <action selector="uploadPressed:" destination="2" id="rtT-hq-W8o"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="PB5-01-ZcN">

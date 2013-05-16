@@ -8,6 +8,7 @@
 
 #import "DefaultScreenViewController.h"
 
+
 @interface DefaultScreenViewController ()
 
 @end
@@ -54,6 +55,12 @@
     picker.allowsEditing = NO;
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     [self presentViewController:picker animated:YES completion:NULL];
+}
+
+- (IBAction)uploadPressed:(id)sender {
+    if (![[DBSession sharedSession] isLinked]) {
+        [[DBSession sharedSession] linkFromController:self];
+    }
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
