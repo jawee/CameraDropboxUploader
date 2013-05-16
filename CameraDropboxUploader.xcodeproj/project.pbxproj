@@ -18,6 +18,9 @@
 		47D5390317455720004D1E72 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 47D5390217455720004D1E72 /* Default-568h@2x.png */; };
 		47D5390617455720004D1E72 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47D5390417455720004D1E72 /* MainStoryboard.storyboard */; };
 		47D5390917455720004D1E72 /* DefaultScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D5390817455720004D1E72 /* DefaultScreenViewController.m */; };
+		47D5391017455F71004D1E72 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47D5390F17455F71004D1E72 /* DropboxSDK.framework */; };
+		47D5391217455FFC004D1E72 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47D5391117455FFC004D1E72 /* QuartzCore.framework */; };
+		47D5391417456001004D1E72 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47D5391317456001004D1E72 /* Security.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +40,9 @@
 		47D5390517455720004D1E72 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		47D5390717455720004D1E72 /* DefaultScreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultScreenViewController.h; sourceTree = "<group>"; };
 		47D5390817455720004D1E72 /* DefaultScreenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefaultScreenViewController.m; sourceTree = "<group>"; };
+		47D5390F17455F71004D1E72 /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
+		47D5391117455FFC004D1E72 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		47D5391317456001004D1E72 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,9 +50,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47D5391417456001004D1E72 /* Security.framework in Frameworks */,
+				47D5391217455FFC004D1E72 /* QuartzCore.framework in Frameworks */,
 				47D538ED17455720004D1E72 /* UIKit.framework in Frameworks */,
 				47D538EF17455720004D1E72 /* Foundation.framework in Frameworks */,
 				47D538F117455720004D1E72 /* CoreGraphics.framework in Frameworks */,
+				47D5391017455F71004D1E72 /* DropboxSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +65,8 @@
 		47D538E017455720004D1E72 = {
 			isa = PBXGroup;
 			children = (
+				47D5391317456001004D1E72 /* Security.framework */,
+				47D5391117455FFC004D1E72 /* QuartzCore.framework */,
 				47D538F217455720004D1E72 /* CameraDropboxUploader */,
 				47D538EB17455720004D1E72 /* Frameworks */,
 				47D538EA17455720004D1E72 /* Products */,
@@ -73,6 +84,7 @@
 		47D538EB17455720004D1E72 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				47D5390F17455F71004D1E72 /* DropboxSDK.framework */,
 				47D538EC17455720004D1E72 /* UIKit.framework */,
 				47D538EE17455720004D1E72 /* Foundation.framework */,
 				47D538F017455720004D1E72 /* CoreGraphics.framework */,
@@ -260,6 +272,10 @@
 		47D5390D17455720004D1E72 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CameraDropboxUploader/CameraDropboxUploader-Prefix.pch";
 				INFOPLIST_FILE = "CameraDropboxUploader/CameraDropboxUploader-Info.plist";
@@ -271,6 +287,10 @@
 		47D5390E17455720004D1E72 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CameraDropboxUploader/CameraDropboxUploader-Prefix.pch";
 				INFOPLIST_FILE = "CameraDropboxUploader/CameraDropboxUploader-Info.plist";
