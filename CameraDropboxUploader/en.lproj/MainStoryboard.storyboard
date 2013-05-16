@@ -1,18 +1,52 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2519" systemVersion="12A206j" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1856"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--class Prefix:identifier View Controller-->
+        <!--Default Screen View Controller-->
         <scene sceneID="5">
             <objects>
-                <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="2" customClass="DefaultScreenViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="82z-WG-8kn">
+                                <items>
+                                    <barButtonItem title="Camera" id="2SJ-ND-wtQ">
+                                        <connections>
+                                            <action selector="takePhoto:" destination="2" id="F7Y-bj-t6T"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Camera Roll" id="LJt-f7-zVL">
+                                        <connections>
+                                            <action selector="selectPhoto:" destination="2" id="KTP-lO-kFX"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="70" style="plain" systemItem="fixedSpace" id="fSn-X1-TFW"/>
+                                    <barButtonItem title="Upload" id="brM-en-dGW"/>
+                                </items>
+                            </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PB5-01-ZcN">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="484" id="KlZ-cD-7ab"/>
+                                    <constraint firstAttribute="width" constant="300" id="M0f-yO-CB7"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="82z-WG-8kn" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="2E5-DV-1cv"/>
+                            <constraint firstItem="PB5-01-ZcN" firstAttribute="centerX" secondItem="82z-WG-8kn" secondAttribute="centerX" type="default" id="MWV-Fl-xvl"/>
+                            <constraint firstItem="82z-WG-8kn" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="Ztc-U3-0rh"/>
+                            <constraint firstItem="PB5-01-ZcN" firstAttribute="top" secondItem="3" secondAttribute="top" constant="10" id="c8D-sP-Hcm"/>
+                            <constraint firstItem="82z-WG-8kn" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="kwd-jF-AQ3"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="PB5-01-ZcN" id="NZm-Zd-Tzc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
