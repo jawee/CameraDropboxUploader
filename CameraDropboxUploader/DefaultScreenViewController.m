@@ -10,11 +10,13 @@
 
 
 @interface DefaultScreenViewController ()
-
+@property (nonatomic, strong) NSString *pathToLatestUploadedFile;
 @end
 
 @implementation DefaultScreenViewController
 @synthesize imageView = _imageView;
+@synthesize restClient = _restClient;
+@synthesize pathToLatestUploadedFile = _pathToLatestUploadedFile;
 
 - (void)viewDidLoad
 {
@@ -39,6 +41,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (DBRestClient *)restClient {
+    if (!_restClient) {
+        _restClient =
+        [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+        _restClient.delegate = self;
+    }
+    return _restClient;
+}
+
 
 - (IBAction)takePhoto:(UIButton *)sender {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -58,20 +69,60 @@
 }
 
 - (IBAction)uploadPressed:(id)sender {
-    if (![[DBSession sharedSession] isLinked]) {
-        [[DBSession sharedSession] linkFromController:self];
+    if(self.imageView.image) {
+        if (![[DBSession sharedSession] isLinked]) {
+            [[DBSession sharedSession] linkFromController:self];
+        } else {
+            NSDateFormatter *timeFormat = [[NSDateFormatter alloc] init];
+            [timeFormat setDateFormat:@"yyyy-MM-dd-HH-mm-ss"];
+            
+            NSDate *now = [[NSDate alloc] init];
+            NSString *theTime = [timeFormat stringFromDate:now];
+            
+            NSString *filename = [NSString stringWithFormat:@"%@.png", theTime];
+            NSData *data = UIImagePNGRepresentation(self.imageView.image);
+            NSString *filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:filename];
+            [data writeToFile:filePath atomically:YES];
+            self.pathToLatestUploadedFile = [NSString stringWithFormat:@"/Public/CameraDropboxUploader/%@", filename];
+            [self.restClient uploadFile:filename toPath:@"/Public/CameraDropboxUploader/" fromPath:filePath];
+        }
     }
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
-
+    
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
     [picker dismissViewControllerAnimated:YES completion:NULL];
     self.imageView.image = chosenImage;
     
-   
     
+    
+}
+
+- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath
+              from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
+    NSLog(@"File uploaded successfully to path: %@", metadata.path);
+    self.pathToLatestUploadedFile = metadata.path;
+    [[self restClient] loadSharableLinkForFile:metadata.path];
+    
+}
+
+- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
+    NSLog(@"File upload failed with error - %@", error);
+}
+
+- (void)restClient:(DBRestClient*)restClient loadedSharableLink:(NSString*)link
+           forFile:(NSString*)path
+{
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = link;
+    NSLog(@"Sharable link %@",link);
+}
+
+- (void)restClient:(DBRestClient*)restClient loadSharableLinkFailedWithError:(NSError*)error
+{
+    NSLog(@"Error %@",error);
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
