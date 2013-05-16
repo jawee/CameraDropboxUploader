@@ -84,7 +84,7 @@
             NSString *filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:filename];
             [data writeToFile:filePath atomically:YES];
             self.pathToLatestUploadedFile = [NSString stringWithFormat:@"/Public/CameraDropboxUploader/%@", filename];
-            [self.restClient uploadFile:filename toPath:@"/Public/CameraDropboxUploader/" fromPath:filePath];
+            [self.restClient uploadFile:filename toPath:@"/Public/CameraDropboxUploader/" withParentRev:nil fromPath:filePath];
         }
     }
 }
@@ -105,11 +105,17 @@
     NSLog(@"File uploaded successfully to path: %@", metadata.path);
     self.pathToLatestUploadedFile = metadata.path;
     [[self restClient] loadSharableLinkForFile:metadata.path];
+    UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Success" message:@"File uploaded, the public link is in your clipboard!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    
+    [myAlertView show];
     
 }
 
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
     NSLog(@"File upload failed with error - %@", error);
+    UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"File wasn't uploaded, please try again!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    
+    [myAlertView show];
 }
 
 - (void)restClient:(DBRestClient*)restClient loadedSharableLink:(NSString*)link
