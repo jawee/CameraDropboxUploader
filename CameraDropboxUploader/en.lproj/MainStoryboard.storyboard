@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--Default Screen View Controller-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="DefaultScreenViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AdN-Hj-pnj"/>
+                        <viewControllerLayoutGuide type="bottom" id="Egd-y9-0AZ"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="82z-WG-8kn">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <color key="backgroundColor" red="0.26666666666666666" green="0.29411764705882354" blue="0.69803921568627447" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <barButtonItem title="Camera" id="2SJ-ND-wtQ">
                                         <connections>
@@ -32,24 +39,33 @@
                                         </connections>
                                     </barButtonItem>
                                 </items>
+                                <color key="tintColor" red="0.2666666667" green="0.29411764709999999" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="PB5-01-ZcN">
+                                <rect key="frame" x="10" y="10" width="300" height="504"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="M0f-yO-CB7"/>
                                 </constraints>
                             </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="EZy-n3-CHN">
+                                <rect key="frame" x="142" y="244" width="37" height="37"/>
+                                <color key="color" red="1" green="0.07060657998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="82z-WG-8kn" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="2E5-DV-1cv"/>
-                            <constraint firstAttribute="bottom" secondItem="PB5-01-ZcN" secondAttribute="bottom" constant="54" type="user" id="5Fe-Bd-x5y"/>
-                            <constraint firstItem="PB5-01-ZcN" firstAttribute="centerX" secondItem="82z-WG-8kn" secondAttribute="centerX" type="default" id="MWV-Fl-xvl"/>
-                            <constraint firstItem="PB5-01-ZcN" firstAttribute="top" secondItem="3" secondAttribute="top" constant="10" type="user" id="Ywl-8a-sbq"/>
-                            <constraint firstItem="82z-WG-8kn" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="Ztc-U3-0rh"/>
-                            <constraint firstItem="82z-WG-8kn" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="kwd-jF-AQ3"/>
+                            <constraint firstItem="82z-WG-8kn" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="2E5-DV-1cv"/>
+                            <constraint firstAttribute="bottom" secondItem="PB5-01-ZcN" secondAttribute="bottom" constant="54" id="5Fe-Bd-x5y"/>
+                            <constraint firstItem="EZy-n3-CHN" firstAttribute="centerX" secondItem="PB5-01-ZcN" secondAttribute="centerX" id="Edo-Oc-O2f"/>
+                            <constraint firstItem="EZy-n3-CHN" firstAttribute="centerX" secondItem="82z-WG-8kn" secondAttribute="centerX" id="P0q-fO-NYt"/>
+                            <constraint firstItem="PB5-01-ZcN" firstAttribute="top" secondItem="3" secondAttribute="top" constant="10" id="Ywl-8a-sbq"/>
+                            <constraint firstItem="82z-WG-8kn" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" id="Ztc-U3-0rh"/>
+                            <constraint firstItem="EZy-n3-CHN" firstAttribute="centerY" secondItem="PB5-01-ZcN" secondAttribute="centerY" id="jeY-Uh-JXd"/>
+                            <constraint firstItem="82z-WG-8kn" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" id="kwd-jF-AQ3"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="EZy-n3-CHN" id="5fo-20-Ybo"/>
                         <outlet property="imageView" destination="PB5-01-ZcN" id="NZm-Zd-Tzc"/>
                     </connections>
                 </viewController>

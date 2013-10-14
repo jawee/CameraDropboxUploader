@@ -12,9 +12,11 @@
 
 @interface DefaultScreenViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, readonly) DBRestClient *restClient;
 - (IBAction)takePhoto:(id)sender;
 - (IBAction)selectPhoto:(id)sender;
+
 - (IBAction)uploadPressed:(id)sender;
 @end
 
